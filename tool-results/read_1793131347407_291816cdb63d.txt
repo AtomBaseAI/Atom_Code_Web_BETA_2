@@ -1,0 +1,1596 @@
+     1→/**
+     2→ * Atom Code course catalog — the single, fully static source of truth.
+     3→ *
+     4→ * NO DATABASE: this file is compiled into the app bundle, so every page that
+     5→ * reads it (course catalog, course detail pages, sitemap) can be statically
+     6→ * generated at build time.
+     7→ *
+     8→ * Data transcribed from the official Atom Code curriculum PDFs
+     9→ * (5 groups · 13 courses · 255 modules).
+    10→ * To update the catalog, edit this file — all pages pick up changes on the
+    11→ * next build/dev reload.
+    12→ */
+    13→
+    14→export const CATALOG_UPDATED = "2026-10-27";
+    15→
+    16→export interface CourseModuleData {
+    17→  /** Zero-based module order within the course. */
+    18→  order: number;
+    19→  title: string;
+    20→  /** Guided practical exercise, if the module has one. */
+    21→  practical: string | null;
+    22→}
+    23→
+    24→export interface CourseData {
+    25→  slug: string;
+    26→  title: string;
+    27→  subtitle: string;
+    28→  description: string;
+    29→  level: "Beginner" | "Intermediate" | "Advanced";
+    30→  projects: string;
+    31→  tools: string[];
+    32→  modules: CourseModuleData[];
+    33→}
+    34→
+    35→export interface CourseGroupData {
+    36→  name: string;
+    37→  slug: string;
+    38→  tagline: string;
+    39→  /** Hex accent color used across the UI for this group. */
+    40→  accent: string;
+    41→  courses: CourseData[];
+    42→}
+    43→
+    44→export const COURSE_GROUPS: CourseGroupData[] = [
+    45→  {
+    46→    "name": "Foundations",
+    47→    "slug": "foundations",
+    48→    "tagline": "Programming and problem-solving fundamentals — delivered on the Atom Code learning portal with an AI-integrated practice IDE.",
+    49→    "accent": "#7600FF",
+    50→    "courses": [
+    51→      {
+    52→        "slug": "c-programming",
+    53→        "title": "C Programming",
+    54→        "subtitle": "Systems programming foundations",
+    55→        "description": "Master C from first principles — syntax, operators, arrays, strings, pointers, structures, dynamic memory and file handling — with structured practice on the Atom Code portal.",
+    56→        "level": "Beginner",
+    57→        "projects": "2 projects (1 common + 1 group)",
+    58→        "tools": [
+    59→          "GCC",
+    60→          "VS Code",
+    61→          "GDB",
+    62→          "Make"
+    63→        ],
+    64→        "modules": [
+    65→          {
+    66→            "order": 0,
+    67→            "title": "Introduction to C Programming",
+    68→            "practical": "History, features and applications of C, role of C in system programming, compiling and running C programs."
+    69→          },
+    70→          {
+    71→            "order": 1,
+    72→            "title": "Basic Syntax and Structure",
+    73→            "practical": "Main function, header files, printf/scanf, comments and code formatting guidelines."
+    74→          },
+    75→          {
+    76→            "order": 2,
+    77→            "title": "Data Types, Variables, and Constants",
+    78→            "practical": "int, float, char, bool, constants, variables, scope and lifetime of variables."
+    79→          },
+    80→          {
+    81→            "order": 3,
+    82→            "title": "Operators",
+    83→            "practical": "Arithmetic, relational, logical, bitwise, assignment, increment/decrement, ternary, sizeof, pointer and special operators, precedence and associativity."
+    84→          },
+    85→          {
+    86→            "order": 4,
+    87→            "title": "Control Flow (if-else, switch)",
+    88→            "practical": "if-else statements, switch-case, continue, break and nested control structures."
+    89→          },
+    90→          {
+    91→            "order": 5,
+    92→            "title": "Looping Statements",
+    93→            "practical": "for, while and do-while loops with nested control structures."
+    94→          },
+    95→          {
+    96→            "order": 6,
+    97→            "title": "Functions and Modular Programming",
+    98→            "practical": "Function declaration and definition, passing parameters, modular program design."
+    99→          },
+   100→          {
+   101→            "order": 7,
+   102→            "title": "Recursion and Inline Functions",
+   103→            "practical": "Implement recursion and inline functions with classic patterns."
+   104→          },
+   105→          {
+   106→            "order": 8,
+   107→            "title": "1D Arrays",
+   108→            "practical": "Declare and define arrays, handling arrays and traversal."
+   109→          },
+   110→          {
+   111→            "order": 9,
+   112→            "title": "2D Arrays",
+   113→            "practical": "Declare and define 2D arrays, matrix manipulation."
+   114→          },
+   115→          {
+   116→            "order": 10,
+   117→            "title": "Strings",
+   118→            "practical": "String functions and string manipulation."
+   119→          },
+   120→          {
+   121→            "order": 11,
+   122→            "title": "Array Pattern",
+   123→            "practical": "Pattern manipulation using arrays."
+   124→          },
+   125→          {
+   126→            "order": 12,
+   127→            "title": "String Manipulation",
+   128→            "practical": "Pattern manipulation using strings."
+   129→          },
+   130→          {
+   131→            "order": 13,
+   132→            "title": "Pointers and Memory Management",
+   133→            "practical": "Pointer basics, pointer arithmetic, arrays with pointers, null pointers."
+   134→          },
+   135→          {
+   136→            "order": 14,
+   137→            "title": "Structures and Unions",
+   138→            "practical": "Defining structures and unions, nested structures, passing structures to functions."
+   139→          },
+   140→          {
+   141→            "order": 15,
+   142→            "title": "Preprocessor Directives",
+   143→            "practical": "Macros, #define, #include, conditional compilation (#ifdef, #ifndef)."
+   144→          },
+   145→          {
+   146→            "order": 16,
+   147→            "title": "Dynamic Memory Allocation",
+   148→            "practical": "malloc, calloc, realloc, free, memory leaks, handling large data structures."
+   149→          },
+   150→          {
+   151→            "order": 17,
+   152→            "title": "Bitwise Operations",
+   153→            "practical": "Bit manipulation, bitwise AND/OR/XOR and shifting operations."
+   154→          },
+   155→          {
+   156→            "order": 18,
+   157→            "title": "Command-Line Arguments",
+   158→            "practical": "Using argc and argv, parsing command-line arguments, real-world use cases."
+   159→          },
+   160→          {
+   161→            "order": 19,
+   162→            "title": "Error Handling",
+   163→            "practical": "Understanding errors, handling standard I/O errors, exit codes and debugging."
+   164→          },
+   165→          {
+   166→            "order": 20,
+   167→            "title": "Advanced Topics (Enumerations, Typedef)",
+   168→            "practical": "Enums and typedefs, best practices for large-scale programs."
+   169→          },
+   170→          {
+   171→            "order": 21,
+   172→            "title": "File Handling in C",
+   173→            "practical": "Reading from and writing to files, modes (r, w, a), error handling in file operations."
+   174→          }
+   175→        ]
+   176→      },
+   177→      {
+   178→        "slug": "data-structures-and-algorithms",
+   179→        "title": "Data Structures and Algorithms",
+   180→        "subtitle": "Interview-ready DSA mastery",
+   181→        "description": "Build unshakeable problem-solving skills — complexity analysis, linked lists, stacks, queues, recursion, hashing, trees, heaps and graphs — tuned for placement interviews.",
+   182→        "level": "Intermediate",
+   183→        "projects": "2 projects (1 common + 1 group)",
+   184→        "tools": [
+   185→          "C++",
+   186→          "Java",
+   187→          "Python",
+   188→          "LeetCode-style practice"
+   189→        ],
+   190→        "modules": [
+   191→          {
+   192→            "order": 0,
+   193→            "title": "Introduction to DSA",
+   194→            "practical": "Understanding time and space complexity, Big O notation."
+   195→          },
+   196→          {
+   197→            "order": 1,
+   198→            "title": "Mathematics for DSA",
+   199→            "practical": "GCD, prime numbers, modular arithmetic, bitwise operations."
+   200→          },
+   201→          {
+   202→            "order": 2,
+   203→            "title": "Sorting Algorithms",
+   204→            "practical": "Implementing bubble sort, selection sort, insertion sort, merge sort, quick sort."
+   205→          },
+   206→          {
+   207→            "order": 3,
+   208→            "title": "Arrays and Strings",
+   209→            "practical": "Understanding 1D & 2D arrays, string manipulation techniques."
+   210→          },
+   211→          {
+   212→            "order": 4,
+   213→            "title": "Singly Linked List",
+   214→            "practical": "Implementing singly linked list and its operations."
+   215→          },
+   216→          {
+   217→            "order": 5,
+   218→            "title": "Doubly Linked List",
+   219→            "practical": "Implementing doubly linked list and its operations."
+   220→          },
+   221→          {
+   222→            "order": 6,
+   223→            "title": "Circular Linked List",
+   224→            "practical": "Implementing circular linked list and its operations."
+   225→          },
+   226→          {
+   227→            "order": 7,
+   228→            "title": "Stacks 1",
+   229→            "practical": "Implementation of stacks, applications in real scenarios."
+   230→          },
+   231→          {
+   232→            "order": 8,
+   233→            "title": "Stacks 2",
+   234→            "practical": "Advanced stack problems and applications in real scenarios."
+   235→          },
+   236→          {
+   237→            "order": 9,
+   238→            "title": "Queues 1",
+   239→            "practical": "Implementation of queues, applications in real scenarios."
+   240→          },
+   241→          {
+   242→            "order": 10,
+   243→            "title": "Queues 2",
+   244→            "practical": "Advanced queue problems and applications in real scenarios."
+   245→          },
+   246→          {
+   247→            "order": 11,
+   248→            "title": "Recursion 1",
+   249→            "practical": "Revisiting basic recursion."
+   250→          },
+   251→          {
+   252→            "order": 12,
+   253→            "title": "Recursion 2",
+   254→            "practical": "Implementing permutations."
+   255→          },
+   256→          {
+   257→            "order": 13,
+   258→            "title": "Hashing",
+   259→            "practical": "Hash tables, hash functions, collision handling, problems using hashing."
+   260→          },
+   261→          {
+   262→            "order": 14,
+   263→            "title": "Binary Trees",
+   264→            "practical": "Tree traversals, binary tree operations, depth-first and breadth-first traversal."
+   265→          },
+   266→          {
+   267→            "order": 15,
+   268→            "title": "Binary Search Tree (BST)",
+   269→            "practical": "BST properties, insertion, deletion, searching in BST, balanced trees."
+   270→          },
+   271→          {
+   272→            "order": 16,
+   273→            "title": "Ordering",
+   274→            "practical": "Compare inorder, postorder, preorder in tree traversal."
+   275→          },
+   276→          {
+   277→            "order": 17,
+   278→            "title": "Heap and Priority Queue",
+   279→            "practical": "Overview of max-heap, min-heap, heap sort, priority queue operations."
+   280→          },
+   281→          {
+   282→            "order": 18,
+   283→            "title": "Graphs 1",
+   284→            "practical": "Understanding graph representations (adjacency matrix, list)."
+   285→          },
+   286→          {
+   287→            "order": 19,
+   288→            "title": "Graphs 2",
+   289→            "practical": "Compare BFS and DFS in graphs."
+   290→          }
+   291→        ]
+   292→      },
+   293→      {
+   294→        "slug": "oops-using-cpp",
+   295→        "title": "OOPS using C++",
+   296→        "subtitle": "Object-oriented design in C++",
+   297→        "description": "Learn object-oriented programming the right way — classes, constructors, inheritance, polymorphism, templates, STL, exception handling and multithreading in modern C++.",
+   298→        "level": "Beginner",
+   299→        "projects": "2 projects (1 common + 1 group)",
+   300→        "tools": [
+   301→          "C++17",
+   302→          "GCC",
+   303→          "VS Code",
+   304→          "STL"
+   305→        ],
+   306→        "modules": [
+   307→          {
+   308→            "order": 0,
+   309→            "title": "Introduction to C++",
+   310→            "practical": "History, features and applications of C++, differences between C and C++, structure of C++, compiling and running C++ programs."
+   311→          },
+   312→          {
+   313→            "order": 1,
+   314→            "title": "Basic Syntax and Data Types",
+   315→            "practical": "Variables, constants, data types (int, float, char), input/output (cin/cout), comments."
+   316→          },
+   317→          {
+   318→            "order": 2,
+   319→            "title": "Operators",
+   320→            "practical": "Arithmetic, relational, logical, bitwise, assignment, increment/decrement, ternary, sizeof, type casting, special operators, operator overloading, precedence and associativity."
+   321→          },
+   322→          {
+   323→            "order": 3,
+   324→            "title": "Control Statements",
+   325→            "practical": "Conditional statements (if-else, switch), continue, break."
+   326→          },
+   327→          {
+   328→            "order": 4,
+   329→            "title": "Looping Statements",
+   330→            "practical": "Implementing for, while and do-while loops."
+   331→          },
+   332→          {
+   333→            "order": 5,
+   334→            "title": "Functions and Modular Programming",
+   335→            "practical": "Function declaration/definition, parameter passing, call by value/reference/address, return values from functions."
+   336→          },
+   337→          {
+   338→            "order": 6,
+   339→            "title": "Recursion",
+   340→            "practical": "Understanding and implementing recursion, inline functions."
+   341→          },
+   342→          {
+   343→            "order": 7,
+   344→            "title": "1D Arrays",
+   345→            "practical": "Declare and define arrays, handling arrays and traversal."
+   346→          },
+   347→          {
+   348→            "order": 8,
+   349→            "title": "2D Arrays",
+   350→            "practical": "Declare and define 2D arrays, matrix manipulation, patterns using arrays."
+   351→          },
+   352→          {
+   353→            "order": 9,
+   354→            "title": "Strings",
+   355→            "practical": "Handling string functions and string manipulation."
+   356→          },
+   357→          {
+   358→            "order": 10,
+   359→            "title": "Pattern Manipulation",
+   360→            "practical": "Pattern manipulation using arrays and strings."
+   361→          },
+   362→          {
+   363→            "order": 11,
+   364→            "title": "Pointers and Dynamic Memory",
+   365→            "practical": "Pointer basics, pointer arithmetic, dynamic memory (new/delete), null pointers."
+   366→          },
+   367→          {
+   368→            "order": 12,
+   369→            "title": "Introduction to Object-Oriented Programming (OOP)",
+   370→            "practical": "Classes/objects, access modifiers (public/private), member functions, class design."
+   371→          },
+   372→          {
+   373→            "order": 13,
+   374→            "title": "Constructors and Destructors",
+   375→            "practical": "Default, parameterized and copy constructors, destructor use and purpose."
+   376→          },
+   377→          {
+   378→            "order": 14,
+   379→            "title": "Inheritance",
+   380→            "practical": "Types of inheritance (single, multiple, hierarchical), virtual base classes."
+   381→          },
+   382→          {
+   383→            "order": 15,
+   384→            "title": "Polymorphism",
+   385→            "practical": "Compile-time and run-time polymorphism, virtual functions, function overriding."
+   386→          },
+   387→          {
+   388→            "order": 16,
+   389→            "title": "Templates and STL",
+   390→            "practical": "Introduction to STL, using vectors, sets, maps, function/class templates."
+   391→          },
+   392→          {
+   393→            "order": 17,
+   394→            "title": "Exception Handling and Multithreading",
+   395→            "practical": "Try-catch blocks, throwing exceptions, custom exceptions, creating threads in C++11, thread synchronization."
+   396→          },
+   397→          {
+   398→            "order": 18,
+   399→            "title": "Advanced OOP (Abstract Classes, Virtual Functions)",
+   400→            "practical": "Abstract classes, virtual destructors, pure virtual functions, interfaces."
+   401→          },
+   402→          {
+   403→            "order": 19,
+   404→            "title": "Operator Overloading",
+   405→            "practical": "Overloading operators (+, -, *, <<, >>), rules for operator overloading."
+   406→          },
+   407→          {
+   408→            "order": 20,
+   409→            "title": "File Handling",
+   410→            "practical": "Reading from and writing to files, modes (r, w, a), error handling in file operations."
+   411→          }
+   412→        ]
+   413→      },
+   414→      {
+   415→        "slug": "oops-using-java",
+   416→        "title": "OOPS using JAVA",
+   417→        "subtitle": "Object-oriented design in Java",
+   418→        "description": "Think in objects — encapsulation, inheritance, polymorphism, collections, multithreading, generics and lambda expressions, taught with hands-on Java practice.",
+   419→        "level": "Beginner",
+   420→        "projects": "2 projects (1 common + 1 group)",
+   421→        "tools": [
+   422→          "Java 17",
+   423→          "IntelliJ IDEA",
+   424→          "JDK",
+   425→          "Maven"
+   426→        ],
+   427→        "modules": [
+   428→          {
+   429→            "order": 0,
+   430→            "title": "Introduction to Java",
+   431→            "practical": "History, features and uses of Java, JVM, JDK and JRE, running Java programs."
+   432→          },
+   433→          {
+   434→            "order": 1,
+   435→            "title": "Data Types and Variables",
+   436→            "practical": "Compiler features, main method, class structure, packages, data types, variables."
+   437→          },
+   438→          {
+   439→            "order": 2,
+   440→            "title": "Operators",
+   441→            "practical": "Arithmetic, relational, logical, bitwise, assignment, increment/decrement, ternary, instanceof, type casting, special operators, precedence and associativity."
+   442→          },
+   443→          {
+   444→            "order": 3,
+   445→            "title": "Control Statements",
+   446→            "practical": "Overview of conditional statements (if-else, switch), continue, break."
+   447→          },
+   448→          {
+   449→            "order": 4,
+   450→            "title": "Looping Statements",
+   451→            "practical": "Implementing for, while, do-while and enhanced for loops."
+   452→          },
+   453→          {
+   454→            "order": 5,
+   455→            "title": "Functions and Modular Programming",
+   456→            "practical": "Function declaration/definition, parameter passing, call by value/reference/address, return values from functions."
+   457→          },
+   458→          {
+   459→            "order": 6,
+   460→            "title": "Recursion",
+   461→            "practical": "Handling recursion programs."
+   462→          },
+   463→          {
+   464→            "order": 7,
+   465→            "title": "1D Arrays",
+   466→            "practical": "Declare and define arrays, handling arrays and traversal."
+   467→          },
+   468→          {
+   469→            "order": 8,
+   470→            "title": "2D Arrays",
+   471→            "practical": "Declare and define 2D arrays, matrix manipulation, patterns using arrays."
+   472→          },
+   473→          {
+   474→            "order": 9,
+   475→            "title": "Strings",
+   476→            "practical": "Built-in String class methods and StringBuilder."
+   477→          },
+   478→          {
+   479→            "order": 10,
+   480→            "title": "Introduction to Object-Oriented Programming (OOP)",
+   481→            "practical": "Overview of core OOP concepts: encapsulation, abstraction, inheritance and polymorphism."
+   482→          },
+   483→          {
+   484→            "order": 11,
+   485→            "title": "Classes and Objects",
+   486→            "practical": "Creating classes, access modifiers (public/private), object instantiation."
+   487→          },
+   488→          {
+   489→            "order": 12,
+   490→            "title": "Constructors and Overloading",
+   491→            "practical": "Discovering types of constructors, constructor overloading, this keyword."
+   492→          },
+   493→          {
+   494→            "order": 13,
+   495→            "title": "Inheritance and Interfaces",
+   496→            "practical": "Analysing types of inheritance, abstract classes, interfaces, multiple inheritance using interfaces, super keyword."
+   497→          },
+   498→          {
+   499→            "order": 14,
+   500→            "title": "Polymorphism (Compile-time and Runtime)",
+   501→            "practical": "Function overloading, method overriding, virtual methods, dynamic binding."
+   502→          },
+   503→          {
+   504→            "order": 15,
+   505→            "title": "Exception Handling",
+   506→            "practical": "Handling try-catch-finally, throw/throws, creating custom exceptions."
+   507→          },
+   508→          {
+   509→            "order": 16,
+   510→            "title": "Collections Framework (List, Set) 1",
+   511→            "practical": "Overview of collections: ArrayList, HashSet, iterators."
+   512→          },
+   513→          {
+   514→            "order": 17,
+   515→            "title": "Collections Framework (Queue, Map) 2",
+   516→            "practical": "Overview of collections: PriorityQueue, HashMap."
+   517→          },
+   518→          {
+   519→            "order": 18,
+   520→            "title": "Multithreading and Concurrency",
+   521→            "practical": "Creating threads, synchronization."
+   522→          },
+   523→          {
+   524→            "order": 19,
+   525→            "title": "Generics and Lambda Expressions",
+   526→            "practical": "Using generics for type safety, functional interfaces."
+   527→          },
+   528→          {
+   529→            "order": 20,
+   530→            "title": "File Handling in Java",
+   531→            "practical": "Reading from and writing to files, serialization and deserialization."
+   532→          }
+   533→        ]
+   534→      },
+   535→      {
+   536→        "slug": "python-programming",
+   537→        "title": "PYTHON Programming",
+   538→        "subtitle": "Modern Python from zero",
+   539→        "description": "From syntax to OOP and beyond — control flow, data structures, comprehensions, decorators, generators, regex and concurrency, all through hands-on Python practice.",
+   540→        "level": "Beginner",
+   541→        "projects": "2 projects (1 common + 1 group)",
+   542→        "tools": [
+   543→          "Python 3",
+   544→          "PyCharm",
+   545→          "Jupyter",
+   546→          "pip"
+   547→        ],
+   548→        "modules": [
+   549→          {
+   550→            "order": 0,
+   551→            "title": "Introduction to Python",
+   552→            "practical": "History and use cases of Python, versions, Python 2 vs Python 3."
+   553→          },
+   554→          {
+   555→            "order": 1,
+   556→            "title": "Python Syntax, Basic Structure, Variables, Data Types",
+   557→            "practical": "Writing and running Python scripts, indentation rules, comments, int/float/str/bool, type casting."
+   558→          },
+   559→          {
+   560→            "order": 2,
+   561→            "title": "Operators",
+   562→            "practical": "Arithmetic, relational, logical, bitwise, assignment, membership (in, not in), identity (is, is not), ternary, special operators, precedence and associativity."
+   563→          },
+   564→          {
+   565→            "order": 3,
+   566→            "title": "Control Flow (if-else)",
+   567→            "practical": "Interpreting if-else statements, nested control structures."
+   568→          },
+   569→          {
+   570→            "order": 4,
+   571→            "title": "Loops",
+   572→            "practical": "Understanding for and while loops."
+   573→          },
+   574→          {
+   575→            "order": 5,
+   576→            "title": "Functions and Lambda Expressions",
+   577→            "practical": "Defining functions, default/keyword arguments, anonymous functions (lambda)."
+   578→          },
+   579→          {
+   580→            "order": 6,
+   581→            "title": "Lists and Tuples",
+   582→            "practical": "Creating and manipulating lists, list methods, tuples and immutability."
+   583→          },
+   584→          {
+   585→            "order": 7,
+   586→            "title": "Dictionaries and Sets",
+   587→            "practical": "Creating dictionaries, working with key-value pairs, set operations."
+   588→          },
+   589→          {
+   590→            "order": 8,
+   591→            "title": "String Manipulation",
+   592→            "practical": "String formatting (f-strings, format), string methods and slicing."
+   593→          },
+   594→          {
+   595→            "order": 9,
+   596→            "title": "Error Handling and Exceptions",
+   597→            "practical": "Implementing try-except blocks, finally clause, raising exceptions, custom exceptions."
+   598→          },
+   599→          {
+   600→            "order": 10,
+   601→            "title": "Modules and Packages",
+   602→            "practical": "Creating and importing modules, understanding __name__ == '__main__'."
+   603→          },
+   604→          {
+   605→            "order": 11,
+   606→            "title": "Comprehensions (List, Set, Dictionary)",
+   607→            "practical": "Implementing list, set and dictionary comprehensions."
+   608→          },
+   609→          {
+   610→            "order": 12,
+   611→            "title": "Object-Oriented Programming (OOP)",
+   612→            "practical": "Understanding classes, objects, constructors, encapsulation, access modifiers."
+   613→          },
+   614→          {
+   615→            "order": 13,
+   616→            "title": "Inheritance",
+   617→            "practical": "Implementing inheritance types."
+   618→          },
+   619→          {
+   620→            "order": 14,
+   621→            "title": "Polymorphism",
+   622→            "practical": "Implementing method overriding, using the super() function."
+   623→          },
+   624→          {
+   625→            "order": 15,
+   626→            "title": "Decorators and Generators",
+   627→            "practical": "Creating and using decorators, understanding and implementing generators."
+   628→          },
+   629→          {
+   630→            "order": 16,
+   631→            "title": "Working with Dates and Times",
+   632→            "practical": "Working with the datetime module, formatting dates and times."
+   633→          },
+   634→          {
+   635→            "order": 17,
+   636→            "title": "Regular Expressions",
+   637→            "practical": "Using the re module for pattern matching, extracting data with regex."
+   638→          },
+   639→          {
+   640→            "order": 18,
+   641→            "title": "Multithreading and Concurrency",
+   642→            "practical": "Creating threads, synchronizing threads, using async/await."
+   643→          },
+   644→          {
+   645→            "order": 19,
+   646→            "title": "File Handling",
+   647→            "practical": "Reading/writing files, handling file modes and errors."
+   648→          }
+   649→        ]
+   650→      }
+   651→    ]
+   652→  },
+   653→  {
+   654→    "name": "Full Stack",
+   655→    "slug": "full-stack",
+   656→    "tagline": "Become an industry-ready web developer — build and deploy complete applications with React, Angular, Spring Boot and Node.js.",
+   657→    "accent": "#C026D3",
+   658→    "courses": [
+   659→      {
+   660→        "slug": "mern-stack",
+   661→        "title": "MERN Stack",
+   662→        "subtitle": "MongoDB · Express · React · Node",
+   663→        "description": "Build complete web applications end-to-end with the MERN stack — React frontends, Express APIs, MongoDB persistence, JWT auth, testing and cloud deployment.",
+   664→        "level": "Intermediate",
+   665→        "projects": "2 projects (1 common + 1 group)",
+   666→        "tools": [
+   667→          "React",
+   668→          "Node.js",
+   669→          "Express.js",
+   670→          "MongoDB",
+   671→          "Redux Toolkit",
+   672→          "JWT",
+   673→          "Postman",
+   674→          "Vercel / Render"
+   675→        ],
+   676→        "modules": [
+   677→          {
+   678→            "order": 0,
+   679→            "title": "Introduction & Setup",
+   680→            "practical": "Overview of full stack development. Setup Node.js, NPM and Git."
+   681→          },
+   682→          {
+   683→            "order": 1,
+   684→            "title": "HTML & CSS Basics",
+   685→            "practical": "Refresher on HTML5, CSS3 and responsive design."
+   686→          },
+   687→          {
+   688→            "order": 2,
+   689→            "title": "JavaScript (ES6+) Fundamentals",
+   690→            "practical": "Advanced JavaScript concepts like arrow functions, promises, spread operators, async/await."
+   691→          },
+   692→          {
+   693→            "order": 3,
+   694→            "title": "React.js Setup",
+   695→            "practical": "Introduction to React. Setting up a React project using Vite."
+   696→          },
+   697→          {
+   698→            "order": 4,
+   699→            "title": "React Components & State Management",
+   700→            "practical": "Understanding component architecture, props, state and events in React."
+   701→          },
+   702→          {
+   703→            "order": 5,
+   704→            "title": "React Hooks",
+   705→            "practical": "Understanding and implementing important React hooks like useState, useEffect, useRef, useContext."
+   706→          },
+   707→          {
+   708→            "order": 6,
+   709→            "title": "Tailwind CSS",
+   710→            "practical": "Implementing beautiful React components with Tailwind CSS."
+   711→          },
+   712→          {
+   713→            "order": 7,
+   714→            "title": "React Routing",
+   715→            "practical": "Implementing routing in React using React Router."
+   716→          },
+   717→          {
+   718→            "order": 8,
+   719→            "title": "Node.js & Express.js Setup",
+   720→            "practical": "Setting up a basic Node.js and Express server. Introduction to REST APIs."
+   721→          },
+   722→          {
+   723→            "order": 9,
+   724→            "title": "MongoDB & Mongoose Integration",
+   725→            "practical": "Introduction to NoSQL databases and MongoDB. Connecting Node.js to MongoDB."
+   726→          },
+   727→          {
+   728→            "order": 10,
+   729→            "title": "Building a RESTful API",
+   730→            "practical": "Creating RESTful API endpoints in Express.js."
+   731→          },
+   732→          {
+   733→            "order": 11,
+   734→            "title": "Connecting Frontend to Backend",
+   735→            "practical": "Fetching data from the backend API using Axios / Fetch API in React."
+   736→          },
+   737→          {
+   738→            "order": 12,
+   739→            "title": "User Authentication (JWT)",
+   740→            "practical": "Implementing authentication with JSON Web Tokens (JWT)."
+   741→          },
+   742→          {
+   743→            "order": 13,
+   744→            "title": "Error Handling & Validation",
+   745→            "practical": "Handling errors in Express and input validation with middleware."
+   746→          },
+   747→          {
+   748→            "order": 14,
+   749→            "title": "React Forms & State Handling",
+   750→            "practical": "Creating and handling forms in React."
+   751→          },
+   752→          {
+   753→            "order": 15,
+   754→            "title": "Frontend Global State Management",
+   755→            "practical": "Introduction to Redux Toolkit, Context API and its integration with React."
+   756→          },
+   757→          {
+   758→            "order": 16,
+   759→            "title": "Testing REST APIs",
+   760→            "practical": "Introduction to API testing using Postman / Insomnia / Thunder Client."
+   761→          },
+   762→          {
+   763→            "order": 17,
+   764→            "title": "Project Integration & Final Testing",
+   765→            "practical": "Final integration of frontend and backend, and testing all functionalities."
+   766→          },
+   767→          {
+   768→            "order": 18,
+   769→            "title": "Project Deployment",
+   770→            "practical": "Frontend deployment with Vercel / Netlify and backend deployment with Render Cloud."
+   771→          },
+   772→          {
+   773→            "order": 19,
+   774→            "title": "Project Presentation & Wrap-up",
+   775→            "practical": "Review of key concepts. Participants present their projects."
+   776→          }
+   777→        ]
+   778→      },
+   779→      {
+   780→        "slug": "mean-stack",
+   781→        "title": "MEAN Stack",
+   782→        "subtitle": "MongoDB · Express · Angular · Node",
+   783→        "description": "Build enterprise-grade applications with the MEAN stack — Angular frontends, Express APIs, MongoDB persistence, JWT auth, RxJS/NgRx state management and deployment.",
+   784→        "level": "Intermediate",
+   785→        "projects": "2 projects (1 common + 1 group)",
+   786→        "tools": [
+   787→          "Angular",
+   788→          "Node.js",
+   789→          "Express.js",
+   790→          "MongoDB",
+   791→          "RxJS / NgRx",
+   792→          "JWT",
+   793→          "Postman",
+   794→          "Vercel / Render"
+   795→        ],
+   796→        "modules": [
+   797→          {
+   798→            "order": 0,
+   799→            "title": "Introduction & Setup",
+   800→            "practical": "Overview of full stack development. Setup Node.js, NPM and Git."
+   801→          },
+   802→          {
+   803→            "order": 1,
+   804→            "title": "HTML & CSS Basics",
+   805→            "practical": "Refresher on HTML5, CSS3 and responsive design."
+   806→          },
+   807→          {
+   808→            "order": 2,
+   809→            "title": "JavaScript (ES6+) Fundamentals",
+   810→            "practical": "Advanced JavaScript concepts like arrow functions, promises, spread operators, async/await."
+   811→          },
+   812→          {
+   813→            "order": 3,
+   814→            "title": "Angular Setup",
+   815→            "practical": "Introduction to Angular. Setting up an Angular project using Angular CLI."
+   816→          },
+   817→          {
+   818→            "order": 4,
+   819→            "title": "Angular Components & Directives",
+   820→            "practical": "Understanding Angular component architecture, directives and data binding."
+   821→          },
+   822→          {
+   823→            "order": 5,
+   824→            "title": "Angular Services & Dependency Injection",
+   825→            "practical": "Creating services, dependency injection and sharing data between components."
+   826→          },
+   827→          {
+   828→            "order": 6,
+   829→            "title": "Tailwind CSS",
+   830→            "practical": "Implementing beautiful Angular components with Tailwind CSS."
+   831→          },
+   832→          {
+   833→            "order": 7,
+   834→            "title": "Angular Routing",
+   835→            "practical": "Implementing routing in Angular using Angular Router."
+   836→          },
+   837→          {
+   838→            "order": 8,
+   839→            "title": "Node.js & Express.js Setup",
+   840→            "practical": "Setting up a basic Node.js and Express server. Introduction to REST APIs."
+   841→          },
+   842→          {
+   843→            "order": 9,
+   844→            "title": "MongoDB & Mongoose Integration",
+   845→            "practical": "Introduction to NoSQL databases and MongoDB. Connecting Node.js to MongoDB."
+   846→          },
+   847→          {
+   848→            "order": 10,
+   849→            "title": "Building a RESTful API",
+   850→            "practical": "Creating RESTful API endpoints in Express.js."
+   851→          },
+   852→          {
+   853→            "order": 11,
+   854→            "title": "Connecting Frontend to Backend",
+   855→            "practical": "Fetching data from the backend API using Angular HTTP Client."
+   856→          },
+   857→          {
+   858→            "order": 12,
+   859→            "title": "User Authentication (JWT)",
+   860→            "practical": "Implementing authentication with JSON Web Tokens (JWT)."
+   861→          },
+   862→          {
+   863→            "order": 13,
+   864→            "title": "Error Handling & Validation",
+   865→            "practical": "Handling errors in Express and input validation with middleware."
+   866→          },
+   867→          {
+   868→            "order": 14,
+   869→            "title": "Angular Forms & State Management",
+   870→            "practical": "Creating and handling forms in Angular. Using RxJS for state management."
+   871→          },
+   872→          {
+   873→            "order": 15,
+   874→            "title": "Frontend State Management",
+   875→            "practical": "Introduction to NgRx (Redux for Angular) or Angular Services for state management."
+   876→          },
+   877→          {
+   878→            "order": 16,
+   879→            "title": "Testing REST APIs",
+   880→            "practical": "Introduction to API testing using Postman / Insomnia / Thunder Client."
+   881→          },
+   882→          {
+   883→            "order": 17,
+   884→            "title": "Project Integration & Final Testing",
+   885→            "practical": "Final integration of frontend and backend, and testing all functionalities."
+   886→          },
+   887→          {
+   888→            "order": 18,
+   889→            "title": "Project Deployment",
+   890→            "practical": "Frontend deployment with Vercel / Netlify and backend deployment with Render Cloud."
+   891→          },
+   892→          {
+   893→            "order": 19,
+   894→            "title": "Project Presentation & Wrap-up",
+   895→            "practical": "Review of key concepts. Participants present their projects."
+   896→          }
+   897→        ]
+   898→      },
+   899→      {
+   900→        "slug": "java-full-stack",
+   901→        "title": "Java Full Stack",
+   902→        "subtitle": "React · Spring Boot 3 · PostgreSQL",
+   903→        "description": "Master enterprise Java development — React frontends on Tailwind, Spring Boot 3 REST APIs, PostgreSQL with JPA, Spring Security with JWT, and full project deployment.",
+   904→        "level": "Intermediate",
+   905→        "projects": "2 projects (1 common + 1 group)",
+   906→        "tools": [
+   907→          "React",
+   908→          "Spring Boot 3",
+   909→          "PostgreSQL",
+   910→          "Spring Security + JWT",
+   911→          "Axios",
+   912→          "Postman",
+   913→          "Vercel / Render / NEON"
+   914→        ],
+   915→        "modules": [
+   916→          {
+   917→            "order": 0,
+   918→            "title": "Introduction & Setup",
+   919→            "practical": "Overview of full stack development. Setup Node.js, NPM and Git."
+   920→          },
+   921→          {
+   922→            "order": 1,
+   923→            "title": "HTML & CSS Basics",
+   924→            "practical": "Refresher on HTML5, CSS3 and responsive design."
+   925→          },
+   926→          {
+   927→            "order": 2,
+   928→            "title": "JavaScript (ES6+) Fundamentals",
+   929→            "practical": "Advanced JavaScript concepts like arrow functions, promises, spread operators, async/await."
+   930→          },
+   931→          {
+   932→            "order": 3,
+   933→            "title": "React.js Setup",
+   934→            "practical": "Introduction to React. Setting up a React project using Vite."
+   935→          },
+   936→          {
+   937→            "order": 4,
+   938→            "title": "React Components & State Management",
+   939→            "practical": "Understanding component architecture, props, state and events in React."
+   940→          },
+   941→          {
+   942→            "order": 5,
+   943→            "title": "React Hooks",
+   944→            "practical": "Understanding and implementing important React hooks like useState, useEffect, useRef, useContext."
+   945→          },
+   946→          {
+   947→            "order": 6,
+   948→            "title": "Tailwind CSS",
+   949→            "practical": "Implementing beautiful React components with Tailwind CSS."
+   950→          },
+   951→          {
+   952→            "order": 7,
+   953→            "title": "React Routing",
+   954→            "practical": "Implementing routing in React using React Router."
+   955→          },
+   956→          {
+   957→            "order": 8,
+   958→            "title": "Spring Boot Setup",
+   959→            "practical": "Overview of Spring Framework. Setting up Spring Boot 3 with Maven."
+   960→          },
+   961→          {
+   962→            "order": 9,
+   963→            "title": "MVC & Annotations",
+   964→            "practical": "Introduction to Model, Controller, Repository and annotations."
+   965→          },
+   966→          {
+   967→            "order": 10,
+   968→            "title": "Building a RESTful API",
+   969→            "practical": "Creating RESTful APIs using Spring Boot 3."
+   970→          },
+   971→          {
+   972→            "order": 11,
+   973→            "title": "Database Integration with Spring Boot",
+   974→            "practical": "Introduction to relational databases. Setting up and connecting PostgreSQL with Spring Boot using JPA."
+   975→          },
+   976→          {
+   977→            "order": 12,
+   978→            "title": "Spring Boot Security",
+   979→            "practical": "Implementing security with Spring Security and JWT for authentication."
+   980→          },
+   981→          {
+   982→            "order": 13,
+   983→            "title": "React & API Integration",
+   984→            "practical": "Fetching data from Spring Boot APIs using Axios/Fetch API in React."
+   985→          },
+   986→          {
+   987→            "order": 14,
+   988→            "title": "React Forms & State Handling",
+   989→            "practical": "Creating and handling forms in React."
+   990→          },
+   991→          {
+   992→            "order": 15,
+   993→            "title": "Frontend Global State Management",
+   994→            "practical": "Introduction to Redux Toolkit, Context API and its integration with React."
+   995→          },
+   996→          {
+   997→            "order": 16,
+   998→            "title": "Testing REST APIs",
+   999→            "practical": "Introduction to API testing using Postman / Insomnia / Thunder Client."
+  1000→          },
+  1001→          {
+  1002→            "order": 17,
+  1003→            "title": "Project Integration & Final Testing",
+  1004→            "practical": "Final integration of frontend and backend, and testing all functionalities."
+  1005→          },
+  1006→          {
+  1007→            "order": 18,
+  1008→            "title": "Project Deployment",
+  1009→            "practical": "Frontend deployment with Vercel / Netlify, backend deployment with Render Cloud, DB with NEON."
+  1010→          },
+  1011→          {
+  1012→            "order": 19,
+  1013→            "title": "Project Presentation & Wrap-up",
+  1014→            "practical": "Review of key concepts. Participants present their projects."
+  1015→          }
+  1016→        ]
+  1017→      }
+  1018→    ]
+  1019→  },
+  1020→  {
+  1021→    "name": "AI & ML",
+  1022→    "slug": "ai-ml",
+  1023→    "tagline": "From classical machine learning to generative AI — train, evaluate and deploy real models with industry toolchains.",
+  1024→    "accent": "#DB2777",
+  1025→    "courses": [
+  1026→      {
+  1027→        "slug": "machine-learning",
+  1028→        "title": "Machine Learning",
+  1029→        "subtitle": "Classical ML to deep learning",
+  1030→        "description": "A complete ML journey — data preprocessing, EDA, supervised and unsupervised learning, CNNs/RNNs, NLP, time series, AutoML, explainability and model deployment.",
+  1031→        "level": "Intermediate",
+  1032→        "projects": "2 projects (1 common + 1 group)",
+  1033→        "tools": [
+  1034→          "Scikit-learn",
+  1035→          "TensorFlow",
+  1036→          "PyTorch",
+  1037→          "Pandas",
+  1038→          "NumPy",
+  1039→          "Flask / FastAPI",
+  1040→          "Hugging Face"
+  1041→        ],
+  1042→        "modules": [
+  1043→          {
+  1044→            "order": 0,
+  1045→            "title": "Introduction to Machine Learning",
+  1046→            "practical": "Hands-on with basic Python libraries (NumPy, Pandas, Matplotlib, Scikit-learn)."
+  1047→          },
+  1048→          {
+  1049→            "order": 1,
+  1050→            "title": "Data Preprocessing",
+  1051→            "practical": "Implement data preprocessing using Scikit-learn."
+  1052→          },
+  1053→          {
+  1054→            "order": 2,
+  1055→            "title": "Exploratory Data Analysis (EDA)",
+  1056→            "practical": "EDA on a real-world dataset using Pandas, Matplotlib and Seaborn."
+  1057→          },
+  1058→          {
+  1059→            "order": 3,
+  1060→            "title": "Supervised Learning — Regression",
+  1061→            "practical": "Build and evaluate regression models."
+  1062→          },
+  1063→          {
+  1064→            "order": 4,
+  1065→            "title": "Supervised Learning — Classification",
+  1066→            "practical": "Implement classification models on datasets."
+  1067→          },
+  1068→          {
+  1069→            "order": 5,
+  1070→            "title": "Model Evaluation & Optimization",
+  1071→            "practical": "Evaluate models and optimize hyperparameters using GridSearchCV."
+  1072→          },
+  1073→          {
+  1074→            "order": 6,
+  1075→            "title": "Unsupervised Learning",
+  1076→            "practical": "Implement clustering algorithms."
+  1077→          },
+  1078→          {
+  1079→            "order": 7,
+  1080→            "title": "Feature Engineering & Feature Selection",
+  1081→            "practical": "Feature selection using SelectKBest, PCA."
+  1082→          },
+  1083→          {
+  1084→            "order": 8,
+  1085→            "title": "Deep Learning Basics",
+  1086→            "practical": "Implement a simple neural network using TensorFlow/Keras."
+  1087→          },
+  1088→          {
+  1089→            "order": 9,
+  1090→            "title": "Convolutional Neural Networks (CNNs)",
+  1091→            "practical": "Build a CNN model using Keras."
+  1092→          },
+  1093→          {
+  1094→            "order": 10,
+  1095→            "title": "Recurrent Neural Networks (RNNs)",
+  1096→            "practical": "Implement an LSTM model."
+  1097→          },
+  1098→          {
+  1099→            "order": 11,
+  1100→            "title": "Natural Language Processing (NLP)",
+  1101→            "practical": "Implement text classification using NLP models."
+  1102→          },
+  1103→          {
+  1104→            "order": 12,
+  1105→            "title": "Reinforcement Learning",
+  1106→            "practical": "Implement a simple RL agent using OpenAI Gym."
+  1107→          },
+  1108→          {
+  1109→            "order": 13,
+  1110→            "title": "Time Series Forecasting",
+  1111→            "practical": "Forecast stock prices using time series models."
+  1112→          },
+  1113→          {
+  1114→            "order": 14,
+  1115→            "title": "Explainable AI (XAI)",
+  1116→            "practical": "Apply explainability techniques to a trained model."
+  1117→          },
+  1118→          {
+  1119→            "order": 15,
+  1120→            "title": "AutoML & Model Selection",
+  1121→            "practical": "Use AutoML frameworks like TPOT, H2O AutoML."
+  1122→          },
+  1123→          {
+  1124→            "order": 16,
+  1125→            "title": "Model Deployment",
+  1126→            "practical": "Deploy a trained model as an API."
+  1127→          },
+  1128→          {
+  1129→            "order": 17,
+  1130→            "title": "Edge AI & On-Device ML",
+  1131→            "practical": "Deploy a TensorFlow Lite model on a mobile device."
+  1132→          },
+  1133→          {
+  1134→            "order": 18,
+  1135→            "title": "AI Ethics & Bias",
+  1136→            "practical": "Analyze bias in a trained ML model."
+  1137→          },
+  1138→          {
+  1139→            "order": 19,
+  1140→            "title": "Project Presentation & Wrap-up",
+  1141→            "practical": "Showcase individual and group projects."
+  1142→          }
+  1143→        ]
+  1144→      },
+  1145→      {
+  1146→        "slug": "generative-ai",
+  1147→        "title": "Generative AI",
+  1148→        "subtitle": "LLMs, diffusion & multimodal AI",
+  1149→        "description": "Build with the generative AI stack — GANs, VAEs, transformers, prompt engineering, code and image generation, chatbots, LLM apps, ethics and cloud deployment.",
+  1150→        "level": "Advanced",
+  1151→        "projects": "2 projects (1 common + 1 group)",
+  1152→        "tools": [
+  1153→          "TensorFlow",
+  1154→          "PyTorch",
+  1155→          "Hugging Face",
+  1156→          "OpenAI API",
+  1157→          "Stable Diffusion",
+  1158→          "Whisper",
+  1159→          "Streamlit"
+  1160→        ],
+  1161→        "modules": [
+  1162→          {
+  1163→            "order": 0,
+  1164→            "title": "Introduction to Generative AI",
+  1165→            "practical": "Explore pre-trained models like GPT and Stable Diffusion."
+  1166→          },
+  1167→          {
+  1168→            "order": 1,
+  1169→            "title": "Generative Adversarial Networks (GANs)",
+  1170→            "practical": "Implement a simple GAN using TensorFlow/PyTorch."
+  1171→          },
+  1172→          {
+  1173→            "order": 2,
+  1174→            "title": "Variational Autoencoders (VAEs)",
+  1175→            "practical": "Build a VAE for image generation."
+  1176→          },
+  1177→          {
+  1178→            "order": 3,
+  1179→            "title": "Deepfake Technology",
+  1180→            "practical": "Experiment with deepfake tools."
+  1181→          },
+  1182→          {
+  1183→            "order": 4,
+  1184→            "title": "Text Generation with RNNs",
+  1185→            "practical": "Implement text generation using LSTMs."
+  1186→          },
+  1187→          {
+  1188→            "order": 5,
+  1189→            "title": "Transformer Models",
+  1190→            "practical": "Fine-tune a transformer model using Hugging Face."
+  1191→          },
+  1192→          {
+  1193→            "order": 6,
+  1194→            "title": "Prompt Engineering",
+  1195→            "practical": "Experiment with OpenAI's GPT models."
+  1196→          },
+  1197→          {
+  1198→            "order": 7,
+  1199→            "title": "Code Generation",
+  1200→            "practical": "Build an AI-powered code assistant."
+  1201→          },
+  1202→          {
+  1203→            "order": 8,
+  1204→            "title": "Speech Synthesis & Audio AI",
+  1205→            "practical": "Implement TTS using Google's Tacotron or OpenAI Whisper."
+  1206→          },
+  1207→          {
+  1208→            "order": 9,
+  1209→            "title": "AI Art & Image Generation",
+  1210→            "practical": "Generate images using Stable Diffusion."
+  1211→          },
+  1212→          {
+  1213→            "order": 10,
+  1214→            "title": "Music Generation",
+  1215→            "practical": "Generate music using Jukebox or Magenta."
+  1216→          },
+  1217→          {
+  1218→            "order": 11,
+  1219→            "title": "Style Transfer & Image Enhancement",
+  1220→            "practical": "Implement neural style transfer."
+  1221→          },
+  1222→          {
+  1223→            "order": 12,
+  1224→            "title": "AI-powered Chatbots",
+  1225→            "practical": "Develop a chatbot using GPT API."
+  1226→          },
+  1227→          {
+  1228→            "order": 13,
+  1229→            "title": "Video Generation & Editing",
+  1230→            "practical": "Experiment with Runway ML or DeepDream."
+  1231→          },
+  1232→          {
+  1233→            "order": 14,
+  1234→            "title": "Multimodal AI",
+  1235→            "practical": "Implement a multimodal AI project."
+  1236→          },
+  1237→          {
+  1238→            "order": 15,
+  1239→            "title": "AI in Gaming",
+  1240→            "practical": "Develop AI-powered game bots."
+  1241→          },
+  1242→          {
+  1243→            "order": 16,
+  1244→            "title": "Large Language Models (LLMs)",
+  1245→            "practical": "Experiment with GPT-4 API for various applications."
+  1246→          },
+  1247→          {
+  1248→            "order": 17,
+  1249→            "title": "AI Regulation & Compliance",
+  1250→            "practical": "Analyze AI regulations and ethical AI frameworks."
+  1251→          },
+  1252→          {
+  1253→            "order": 18,
+  1254→            "title": "Generative AI Deployment",
+  1255→            "practical": "Deploy an AI model on cloud or edge."
+  1256→          },
+  1257→          {
+  1258→            "order": 19,
+  1259→            "title": "Project Presentation & Wrap-up",
+  1260→            "practical": "Showcase individual and group projects."
+  1261→          }
+  1262→        ]
+  1263→      }
+  1264→    ]
+  1265→  },
+  1266→  {
+  1267→    "name": "Cloud (AWS)",
+  1268→    "slug": "cloud-aws",
+  1269→    "tagline": "Cloud careers start here — from AWS fundamentals workshops to Solution Architect Associate certification prep.",
+  1270→    "accent": "#D97706",
+  1271→    "courses": [
+  1272→      {
+  1273→        "slug": "aws-foundations-workshop",
+  1274→        "title": "AWS Foundations Workshop",
+  1275→        "subtitle": "Cloud fundamentals starter",
+  1276→        "description": "A fast, practical introduction to AWS — core cloud concepts, global infrastructure, billing, security, compute, storage, databases and monitoring, ending with a practice certification exam.",
+  1277→        "level": "Beginner",
+  1278→        "projects": "Guided hands-on labs + practice exam",
+  1279→        "tools": [
+  1280→          "AWS Console",
+  1281→          "EC2",
+  1282→          "S3",
+  1283→          "RDS",
+  1284→          "CloudWatch"
+  1285→        ],
+  1286→        "modules": [
+  1287→          {
+  1288→            "order": 0,
+  1289→            "title": "Course Introduction",
+  1290→            "practical": "Overview of course objectives and structure."
+  1291→          },
+  1292→          {
+  1293→            "order": 1,
+  1294→            "title": "Cloud Concepts Overview",
+  1295→            "practical": "Explore the benefits and models of cloud computing."
+  1296→          },
+  1297→          {
+  1298→            "order": 2,
+  1299→            "title": "AWS Global Infrastructure",
+  1300→            "practical": "Identify AWS Regions, Availability Zones and Edge Locations."
+  1301→          },
+  1302→          {
+  1303→            "order": 3,
+  1304→            "title": "Cloud Economics and Billing",
+  1305→            "practical": "Understand AWS pricing models and billing practices."
+  1306→          },
+  1307→          {
+  1308→            "order": 4,
+  1309→            "title": "AWS Cloud Security",
+  1310→            "practical": "Introduction to AWS security concepts and compliance."
+  1311→          },
+  1312→          {
+  1313→            "order": 5,
+  1314→            "title": "Networking and Content Delivery",
+  1315→            "practical": "Learn about VPC, subnets and content delivery networks."
+  1316→          },
+  1317→          {
+  1318→            "order": 6,
+  1319→            "title": "Compute Services",
+  1320→            "practical": "Explore EC2, Lambda and other compute services."
+  1321→          },
+  1322→          {
+  1323→            "order": 7,
+  1324→            "title": "Storage Services",
+  1325→            "practical": "Understand S3, EBS and other storage options."
+  1326→          },
+  1327→          {
+  1328→            "order": 8,
+  1329→            "title": "Databases",
+  1330→            "practical": "Introduction to RDS, DynamoDB and database services."
+  1331→          },
+  1332→          {
+  1333→            "order": 9,
+  1334→            "title": "Monitoring and Management",
+  1335→            "practical": "Learn about CloudWatch, CloudTrail and AWS Config."
+  1336→          },
+  1337→          {
+  1338→            "order": 10,
+  1339→            "title": "Review and Practice Exam",
+  1340→            "practical": "Recap of course content and practice certification exam."
+  1341→          }
+  1342→        ]
+  1343→      },
+  1344→      {
+  1345→        "slug": "aws-solution-architect-associate",
+  1346→        "title": "AWS Solution Architect Associate",
+  1347→        "subtitle": "SAA certification curriculum",
+  1348→        "description": "Full-spectrum AWS SAA preparation — IAM, storage, compute, networking, autoscaling, serverless, databases, analytics, containers, DevOps, migration and architecting — with three portfolio projects.",
+  1349→        "level": "Intermediate",
+  1350→        "projects": "3 projects — static website (S3), server web app (Docker/EC2/ALB CI/CD), serverless web app (Lambda/ECR CI/CD)",
+  1351→        "tools": [
+  1352→          "IAM",
+  1353→          "EC2",
+  1354→          "S3",
+  1355→          "VPC",
+  1356→          "Lambda",
+  1357→          "RDS",
+  1358→          "EKS",
+  1359→          "CloudWatch",
+  1360→          "Route 53"
+  1361→        ],
+  1362→        "modules": [
+  1363→          {
+  1364→            "order": 0,
+  1365→            "title": "Introduction & Setup",
+  1366→            "practical": "Overview of cloud and AWS. Set up an AWS account."
+  1367→          },
+  1368→          {
+  1369→            "order": 1,
+  1370→            "title": "Identity Service & Billing",
+  1371→            "practical": "IAM users, policies, roles, Cognito, Active Directory, AWS Billing Conductor, AWS Budget. Practice: IAM (users, roles, policies), managing users in AWS."
+  1372→          },
+  1373→          {
+  1374→            "order": 2,
+  1375→            "title": "Storage Layer",
+  1376→            "practical": "S3, EBS, EFS, FSx. Practice: creating buckets, managing objects, static web hosting."
+  1377→          },
+  1378→          {
+  1379→            "order": 3,
+  1380→            "title": "Compute Layer",
+  1381→            "practical": "EC2 (Linux, Windows), Cloud Shell, AMI. Practice: static and multiple web hosting on Linux, server image using AMI."
+  1382→          },
+  1383→          {
+  1384→            "order": 4,
+  1385→            "title": "Networking Layer",
+  1386→            "practical": "VPC (subnetting, routing, internet and NAT gateway). Practice: VPC subnetting, routing, internet gateway."
+  1387→          },
+  1388→          {
+  1389→            "order": 5,
+  1390→            "title": "Connecting Layer",
+  1391→            "practical": "VPC peering and transit gateway. Practice: VPC peering."
+  1392→          },
+  1393→          {
+  1394→            "order": 6,
+  1395→            "title": "Auto Scaling",
+  1396→            "practical": "Auto Scaling Group, health checks. Practice: creating an Auto Scaling Group and executing auto-scaling."
+  1397→          },
+  1398→          {
+  1399→            "order": 7,
+  1400→            "title": "Load Balancing",
+  1401→            "practical": "Load balancer classification and types. Practice: Elastic Load Balancer and Application Load Balancer."
+  1402→          },
+  1403→          {
+  1404→            "order": 8,
+  1405→            "title": "Content Delivery Network",
+  1406→            "practical": "DNS, Route 53, latency-based routing, geography-based routing. Practice: CloudFront distribution, enabling geographic location."
+  1407→          },
+  1408→          {
+  1409→            "order": 9,
+  1410→            "title": "Serverless",
+  1411→            "practical": "Lambda, Elastic Beanstalk, Fargate. Practice: Lambda."
+  1412→          },
+  1413→          {
+  1414→            "order": 10,
+  1415→            "title": "Application Integration",
+  1416→            "practical": "SQS, SNS, SES, Amazon MQ."
+  1417→          },
+  1418→          {
+  1419→            "order": 11,
+  1420→            "title": "Monitoring, Management and Security",
+  1421→            "practical": "CloudTrail, CloudWatch, Config, EventBridge, Global Accelerator, GuardDuty, Inspector, Secrets Manager, Certificate Manager, WAF. Practice: CloudWatch."
+  1422→          },
+  1423→          {
+  1424→            "order": 12,
+  1425→            "title": "Database",
+  1426→            "practical": "RDS, DocumentDB, DynamoDB, ElastiCache, Keyspaces, Neptune, QLDB."
+  1427→          },
+  1428→          {
+  1429→            "order": 13,
+  1430→            "title": "Analytics",
+  1431→            "practical": "Introduction to ELT/ETL, AWS Kinesis, EMR, AWS Glue, QuickSight, Hadoop overview and processing frameworks."
+  1432→          },
+  1433→          {
+  1434→            "order": 14,
+  1435→            "title": "Containerization",
+  1436→            "practical": "Introduction to Docker, ECR Elastic Container Service, Elastic Kubernetes Service. Practice: developing and managing a container in Linux."
+  1437→          },
+  1438→          {
+  1439→            "order": 15,
+  1440→            "title": "DevOps Overview",
+  1441→            "practical": "DevOps overview, SDLC, Waterfall and Agile methodology. Practice: GitHub, GitHub Actions/Runners, DockerHub."
+  1442→          },
+  1443→          {
+  1444→            "order": 16,
+  1445→            "title": "Migrations",
+  1446→            "practical": "Migration strategies, AWS DMS, Storage Gateway, CAF."
+  1447→          },
+  1448→          {
+  1449→            "order": 17,
+  1450→            "title": "Disaster Planning & Cloud Architecting",
+  1451→            "practical": "High availability, disaster management, comparing various cloud architecting methods."
+  1452→          },
+  1453→          {
+  1454→            "order": 18,
+  1455→            "title": "AI/ML Overview",
+  1456→            "practical": "Lex, Kendra, Translate, Polly, Rekognition, SageMaker. Practice: chatbot and translating a website on Linux using managed services."
+  1457→          },
+  1458→          {
+  1459→            "order": 19,
+  1460→            "title": "Project Presentation & Wrap-Up",
+  1461→            "practical": "Final project integrating all AWS services learned. Present projects and review key concepts."
+  1462→          }
+  1463→        ]
+  1464→      }
+  1465→    ]
+  1466→  },
+  1467→  {
+  1468→    "name": "SDET",
+  1469→    "slug": "sdet",
+  1470→    "tagline": "Software development engineer in testing — automation frameworks, Selenium, TestNG and modern QA practice.",
+  1471→    "accent": "#059669",
+  1472→    "courses": [
+  1473→      {
+  1474→        "slug": "software-testing",
+  1475→        "title": "Software Testing",
+  1476→        "subtitle": "Selenium automation & QA frameworks",
+  1477→        "description": "Become a job-ready SDET — manual testing fundamentals, Selenium WebDriver, TestNG, data-driven and hybrid frameworks, reporting with Extent, logging with Log4j, Agile and web services.",
+  1478→        "level": "Intermediate",
+  1479→        "projects": "2 projects (1 common + 1 group)",
+  1480→        "tools": [
+  1481→          "Selenium",
+  1482→          "TestNG",
+  1483→          "Maven",
+  1484→          "Extent Reports",
+  1485→          "Log4j",
+  1486→          "Eclipse",
+  1487→          "VS Code",
+  1488→          "Postman"
+  1489→        ],
+  1490→        "modules": [
+  1491→          {
+  1492→            "order": 0,
+  1493→            "title": "Java Revision 1",
+  1494→            "practical": "Revisiting variables and data types, control statements, arrays, strings and functions, classes and objects, inheritance and polymorphism."
+  1495→          },
+  1496→          {
+  1497→            "order": 1,
+  1498→            "title": "Java Revision 2",
+  1499→            "practical": "Revisiting exception handling and collections."
+  1500→          },
+  1501→          {
+  1502→            "order": 2,
+  1503→            "title": "Automation Testing Introduction",
+  1504→            "practical": "Introduction to automation testing, advantages and disadvantages, history of Selenium, why Selenium, difference between Selenium and other tools, components."
+  1505→          },
+  1506→          {
+  1507→            "order": 3,
+  1508→            "title": "Manual Testing",
+  1509→            "practical": "What is software testing, why software testing, benefits, test levels (unit, integration, system, acceptance), test types, functional and non-functional testing, change-related testing."
+  1510→          },
+  1511→          {
+  1512→            "order": 4,
+  1513→            "title": "Manual Testing — Scenario & Case Design",
+  1514→            "practical": "Test scenario design (functional and non-functional scenarios, business-critical scenarios), test case design (pre-requisites, steps, expected results, positive and negative cases), prioritization, RTM and DSR."
+  1515→          },
+  1516→          {
+  1517→            "order": 5,
+  1518→            "title": "Maven",
+  1519→            "practical": "Installation: Maven configuration, IDE setup."
+  1520→          },
+  1521→          {
+  1522→            "order": 6,
+  1523→            "title": "Wait Commands",
+  1524→            "practical": "Introduction, generating scripts, wait commands, validation commands, store commands, limitations."
+  1525→          },
+  1526→          {
+  1527→            "order": 7,
+  1528→            "title": "Web Element Handling 1",
+  1529→            "practical": "Sample program, navigation, radio buttons and checkbox, drop-down list."
+  1530→          },
+  1531→          {
+  1532→            "order": 8,
+  1533→            "title": "Web Element Handling 2",
+  1534→            "practical": "File upload, drag and drop, error and alert messages, multiple windows."
+  1535→          },
+  1536→          {
+  1537→            "order": 9,
+  1538→            "title": "Web Element Handling 3",
+  1539→            "practical": "Iframes, web table and calendar."
+  1540→          },
+  1541→          {
+  1542→            "order": 10,
+  1543→            "title": "TestNG Framework 1",
+  1544→            "practical": "Maven configuration, executing TestNG from Maven, TestNG, annotations."
+  1545→          },
+  1546→          {
+  1547→            "order": 11,
+  1548→            "title": "TestNG Framework 2",
+  1549→            "practical": "Implementing listeners, running group test cases."
+  1550→          },
+  1551→          {
+  1552→            "order": 12,
+  1553→            "title": "Data-Driven Framework",
+  1554→            "practical": "Property file handling, reading data from Excel."
+  1555→          },
+  1556→          {
+  1557→            "order": 13,
+  1558→            "title": "Extent Reports",
+  1559→            "practical": "HTML report generation using Extent Reports, attaching screenshots in HTML reports."
+  1560→          },
+  1561→          {
+  1562→            "order": 14,
+  1563→            "title": "Log4j",
+  1564→            "practical": "Configuring Log4j property files, parameters for properties files, log levels and logging using Log4j."
+  1565→          },
+  1566→          {
+  1567→            "order": 15,
+  1568→            "title": "Hybrid Framework 1",
+  1569→            "practical": "Hybrid framework concepts, creating the POM with a hybrid framework folder structure, implementing the hybrid framework in POM."
+  1570→          },
+  1571→          {
+  1572→            "order": 16,
+  1573→            "title": "Hybrid Framework 2",
+  1574→            "practical": "Implementing the hybrid framework in POM end-to-end."
+  1575→          },
+  1576→          {
+  1577→            "order": 17,
+  1578→            "title": "Selenium — RWD & Cross Browser Testing",
+  1579→            "practical": "Running test scripts in various browsers."
+  1580→          },
+  1581→          {
+  1582→            "order": 18,
+  1583→            "title": "Agile Concepts",
+  1584→            "practical": "Agile values and principles, Agile frameworks and methodologies, key roles in Agile, ceremonies/events, Agile artifacts, Agile tools and boards."
+  1585→          },
+  1586→          {
+  1587→            "order": 19,
+  1588→            "title": "Webservices Basics",
+  1589→            "practical": "Understanding webservices using Postman (Thunder Client)."
+  1590→          }
+  1591→        ]
+  1592→      }
+  1593→    ]
+  1594→  }
+  1595→];
+  1596→
